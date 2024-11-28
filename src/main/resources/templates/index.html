@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" th:href="@{styles.css}">
 </head>
 <body>
 <header>
@@ -13,6 +14,7 @@
 </header>
 <div>
 <form action="/exchange">
+    <div class="select">
     <select name="firstCurrency">
         <option selected="selected" disabled>Выберите вашу валюту для перевода</option>
         <option value="RUB">Рубли</option>
@@ -29,9 +31,10 @@
     <option value="CHF">Швейцарсике франки</option>
     <option value="GBP">Фунт</option>
     </select>
-    <script th:src="@{script.js}">
-    </script>
-    <button onclick="exchange()"></button>
+    </div>
+    <input type="text" placeholder="Количество валюты" id="currCount" name="currCount">
+    <button>Отправить</button>
+    <div id="currencyId"></div>
 </form>
 
 <p th:text="${answer}"></p>

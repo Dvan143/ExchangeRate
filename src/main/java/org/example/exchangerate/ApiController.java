@@ -30,14 +30,15 @@ public class ApiController {
     }
 
     @GetMapping("/exchange")
-    public String exchange(@RequestParam String firstCurrency, @RequestParam String secondCurrency, Model model){
+    public String exchange(@RequestParam String firstCurrency, @RequestParam String secondCurrency, @RequestParam String currCount, Model model){
         model.addAttribute("time", time);
         model.addAttribute("usd", usd);
         model.addAttribute("euro",euro);
         // Получаем api запрос
         String req = restTemplate.getForObject(url+firstCurrency, String.class);
-        // Обрабатываем получrенный ответ и достаем из него необходимый курс
+        // Обрабатываем полученный ответ и умножаем на необходимое количество, далее округляем до 2 цифр после точки
         String answer = req.split(secondCurrency + "\":")[1].split(",")[0];
+        answer = String.valueOf((Double.valueOf(answer) * Integer.parseInt(currCount)));
         model.addAttribute("answer", answer);
         return "index";
     }
