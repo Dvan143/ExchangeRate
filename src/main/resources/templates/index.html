@@ -5,9 +5,26 @@
     <title>Title</title>
 </head>
 <body>
-<form>
-    <input type="text" th:field="currencyOne">
-    <input type="text" th:field="currencyTwo">
+<form name="form">
+    <select name="firstCurrency">
+        <option selected="selected" disabled>Выберите вашу валюту для перевода</option>
+        <option value="RUB">Рубли</option>
+        <option value="USD">Доллары</option>
+        <option value="EUR">Евро</option>
+        <option value="CHF">Швейцарсике франки</option>
+        <option value="GBP">Фунт</option>
+    </select>
+    <select name="secondCurrency">
+    <option selected="selected" disabled>Выберите в какую валюту переводить</option>
+    <option value="RUB">Рубли</option>
+    <option value="USD">Доллары</option>
+    <option value="EUR">Евро</option>
+    <option value="CHF">Швейцарсике франки</option>
+    <option value="GBP">Фунт</option>
+    </select>
+    <input type="submit" onclick="exchange()">
 </form>
+<script th:src="@{script.js}"></script>
+<p th:text="${answer}"></p>
 </body>
 </html>
