@@ -5,7 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<form name="form">
+<header>
+    <div>Курс валют:</div>
+    <div>Актуальное время: <span th:text="${time}"></span></div>
+    <div>USD: <span th:text="${usd}"></span></div>
+    <div>EUR: <span th:text="${euro}"></span></div>
+</header>
+<div>
+<form action="/exchange">
     <select name="firstCurrency">
         <option selected="selected" disabled>Выберите вашу валюту для перевода</option>
         <option value="RUB">Рубли</option>
@@ -22,9 +29,12 @@
     <option value="CHF">Швейцарсике франки</option>
     <option value="GBP">Фунт</option>
     </select>
-    <input type="submit" onclick="exchange()">
+    <script th:src="@{script.js}">
+    </script>
+    <button onclick="exchange()"></button>
 </form>
-<script th:src="@{script.js}"></script>
+
 <p th:text="${answer}"></p>
+</div>
 </body>
 </html>
