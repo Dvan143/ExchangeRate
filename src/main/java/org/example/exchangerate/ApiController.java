@@ -36,9 +36,12 @@ public class ApiController {
         model.addAttribute("euro",euro);
         // Получаем api запрос
         String req = restTemplate.getForObject(url+firstCurrency, String.class);
-        // Обрабатываем полученный ответ и умножаем на необходимое количество, далее округляем до 2 цифр после точки
+        // Обрабатываем полученный ответ и умножаем на необходимое количество
         String answer = req.split(secondCurrency + "\":")[1].split(",")[0];
-        answer = String.valueOf((Double.valueOf(answer) * Integer.parseInt(currCount)));
+
+        Double formatted = (Double.valueOf(answer) * Integer.parseInt(currCount));
+        answer = String.format("%.2f", formatted);
+
         model.addAttribute("answer", answer);
         return "index";
     }
